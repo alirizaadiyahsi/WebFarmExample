@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Caching.Redis;
 
 namespace WebFarmExample
 {
@@ -29,6 +31,12 @@ namespace WebFarmExample
         {
             // Add framework services.
             services.AddMvc();
+
+            services.AddDistributedRedisCache(options =>
+            {
+                options.Configuration = Dns.GetHostAddressesAsync("dockerconfig_ali_redis_1").Result.FirstOrDefault().ToString();
+                options.InstanceName = "redisInstance";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -8,3 +8,8 @@ services:
             - ASPNETCORE_ENVIRONMENT=Development
         ports:
             - "9901:80"
+           
+    ali_redis:  
+        image: ali/redis
+        ports:
+            - "6379:6379"
