@@ -1,0 +1,10 @@
+version: '2'
+
+services:
+
+    ali_webapi:
+        image: ali/webapi
+        environment:
+            - ASPNETCORE_ENVIRONMENT=Development
+        ports:
+            - "9901:80"
