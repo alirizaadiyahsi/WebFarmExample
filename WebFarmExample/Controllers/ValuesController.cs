@@ -11,7 +11,7 @@ namespace WebFarmExample.Controllers
     public class ValuesController : Controller
     {
         private readonly IDistributedCache _memoryCache;
-
+         
         public ValuesController(IDistributedCache memoryCache)
         {
             _memoryCache = memoryCache;
