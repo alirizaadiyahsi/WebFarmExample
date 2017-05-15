@@ -2,14 +2,19 @@ version: '2'
 
 services:
 
-    ali_webapi:
-        image: ali/webapi
-        environment:
-            - ASPNETCORE_ENVIRONMENT=Development
-        ports:
-            - "9901:80"
-           
     ali_redis:  
         image: ali/redis
         ports:
             - "6379:6379"
+
+    ali_webapi:
+        image: ali/webapi
+        environment:
+            - ASPNETCORE_ENVIRONMENT=Staging
+            
+    load_balancer:
+        image: haproxy:1.7.1
+        volumes:
+            - "./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg"
+        ports:
+            - "9911:8080"

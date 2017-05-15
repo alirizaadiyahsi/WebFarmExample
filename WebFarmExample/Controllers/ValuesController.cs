@@ -45,7 +45,7 @@ namespace WebFarmExample.Controllers
                 var time = Encoding.UTF8.GetString(_memoryCache.Get("serverTime"));
                 ViewBag.data = time;
 
-                return time;
+                return "Server time: " + time + " - Machine name: " + Environment.MachineName;
             }
             catch (Exception ex)
             {
